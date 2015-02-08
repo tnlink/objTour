@@ -178,6 +178,7 @@
 				TargetAttributes = {
 					24271DC41A7E551400A40AB7 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 9734J427D3;
 					};
 					24271DE31A7E551400A40AB7 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -424,6 +425,7 @@
 				24271DF01A7E551400A40AB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		24271DF11A7E551400A40AB7 /* Build configuration list for PBXNativeTarget "TrainsInHandTests" */ = {
 			isa = XCConfigurationList;
@@ -432,6 +434,7 @@
 				24271DF31A7E551400A40AB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

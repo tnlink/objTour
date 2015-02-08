@@ -18,7 +18,52 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFW-NB-ba9">
                                 <rect key="frame" x="8" y="45" width="584" height="547"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time right now: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JjX-ap-VIc">
+                                        <rect key="frame" x="8" y="8" width="172" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="8" y="8" width="135" height="27"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhs-Es-q4G">
+                                        <rect key="frame" x="255" y="8" width="74" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="137" y="8" width="74" height="21"/>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="161" y="8" width="144" height="27"/>
+                                        </variation>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="bhs-Es-q4G" secondAttribute="trailing" constant="79" id="23P-PX-W6G">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                                    </constraint>
+                                    <constraint firstItem="JjX-ap-VIc" firstAttribute="top" secondItem="wFW-NB-ba9" secondAttribute="top" constant="8" id="2x1-0W-bqa"/>
+                                    <constraint firstItem="JjX-ap-VIc" firstAttribute="leading" secondItem="wFW-NB-ba9" secondAttribute="leading" constant="8" id="8Kh-i7-Uyp"/>
+                                    <constraint firstItem="bhs-Es-q4G" firstAttribute="top" secondItem="wFW-NB-ba9" secondAttribute="top" constant="8" id="nGJ-80-ndd"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2x1-0W-bqa"/>
+                                        <exclude reference="8Kh-i7-Uyp"/>
+                                        <exclude reference="23P-PX-W6G"/>
+                                        <exclude reference="nGJ-80-ndd"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="2x1-0W-bqa"/>
+                                        <include reference="8Kh-i7-Uyp"/>
+                                        <include reference="23P-PX-W6G"/>
+                                        <include reference="nGJ-80-ndd"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="i7n-lc-4In">
                                 <rect key="frame" x="8" y="20" width="584" height="17"/>
@@ -39,12 +84,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="CurrentTime" destination="bhs-Es-q4G" id="eZQ-18-OlR"/>
                         <outlet property="dataLabel" destination="i7n-lc-4In" id="8Kj-KN-eO6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PHE-GN-Yf3" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="933" y="476"/>
+            <point key="canvasLocation" x="933" y="475.5"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="3GU-QQ-JyJ">
@@ -57,18 +103,6 @@
                     <view key="view" contentMode="scaleToFill" id="cc6-cB-pgf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Right now: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JjX-ap-VIc">
-                                <rect key="frame" x="16" y="28" width="172" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhs-Es-q4G">
-                                <rect key="frame" x="214" y="28" width="172" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>

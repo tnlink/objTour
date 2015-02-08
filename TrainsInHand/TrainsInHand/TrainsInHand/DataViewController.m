@@ -16,17 +16,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.CurrentTime.text = [DataViewController displayTime];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.dataLabel.text = [self.dataObject description];
+}
+
++ (NSString *)displayTime{
+    NSDateFormatter *formatter;
+    NSString *dateString;
+    
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm:ss MM/dd"];
+    dateString = [formatter stringFromDate:[NSDate date]];
+    
+    return dateString;
 }
 
 @end

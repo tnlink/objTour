@@ -11,7 +11,5 @@
 @interface RootViewController : UIViewController <UIPageViewControllerDelegate>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
-@property (weak, nonatomic) IBOutlet UILabel *CurrentTime;
-
 @end
 
