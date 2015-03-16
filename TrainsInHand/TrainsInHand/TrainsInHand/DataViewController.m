@@ -39,4 +39,32 @@
     return dateString;
 }
 
+- (void) longPoll {
+    //compose the request
+    NSError* error = nil;
+    NSURLResponse* response = nil;
+    NSURL* requestUrl = [NSURL URLWithString:@"http://www.mysite.com/pollUrl"];
+    NSURLRequest* request = [NSURLRequest requestWithURL:requestUrl];
+    
+    //send the request (will block until a response comes back)
+    NSData* responseData = [NSURLConnection sendSynchronousRequest:request
+                                                 returningResponse:&response error:&error];
+    
+    //pass the response on to the handler (can also check for errors here, if you want)
+    [self performSelectorOnMainThread:@selector(dataReceived:)
+                           withObject:responseData waitUntilDone:YES];
+    
+    //send the next poll request
+    [self performSelectorInBackground:@selector(longPoll) withObject: nil];
+}
+
+- (void) startPoll {
+    //not covered in this example:  stopping the poll or ensuring that only 1 poll is active at any given time
+    [self performSelectorInBackground:@selector(longPoll) withObject: nil];
+}
+
+- (void) dataReceived: (NSData*) theData {
+    //process the response here
+}
+
 @end

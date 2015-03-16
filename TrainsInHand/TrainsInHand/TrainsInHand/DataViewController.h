@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DataViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *PollAction;
 
 @property (strong, nonatomic) IBOutlet UILabel *dataLabel;
 @property (strong, nonatomic) id dataObject;

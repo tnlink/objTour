@@ -89,6 +89,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="CurrentTime" destination="bhs-Es-q4G" id="eZQ-18-OlR"/>
+                        <outlet property="PollAction" destination="ve1-fs-kMA" id="bHa-ZP-09e"/>
                         <outlet property="dataLabel" destination="i7n-lc-4In" id="8Kj-KN-eO6"/>
                     </connections>
                 </viewController>
