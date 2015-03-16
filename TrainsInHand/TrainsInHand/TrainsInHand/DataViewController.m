@@ -39,11 +39,15 @@
     return dateString;
 }
 
+- (IBAction)pollDidPressed:(id)sender {
+    [self startPoll];
+}
+
 - (void) longPoll {
     //compose the request
     NSError* error = nil;
     NSURLResponse* response = nil;
-    NSURL* requestUrl = [NSURL URLWithString:@"http://www.mysite.com/pollUrl"];
+    NSURL* requestUrl = [NSURL URLWithString:@"http://ec2-52-10-127-200.us-west-2.compute.amazonaws.com:1337/"];
     NSURLRequest* request = [NSURLRequest requestWithURL:requestUrl];
     
     //send the request (will block until a response comes back)
@@ -65,6 +69,10 @@
 
 - (void) dataReceived: (NSData*) theData {
     //process the response here
+    NSString *response = [[NSString alloc] initWithData:theData encoding:NSStringEncodingConversionAllowLossy];
+    if (response != nil) {
+        NSLog(response);
+    }
 }
 
 @end

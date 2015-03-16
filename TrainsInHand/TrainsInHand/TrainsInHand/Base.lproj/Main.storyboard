@@ -16,6 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="i7n-lc-4In">
+                                <rect key="frame" x="8" y="20" width="584" height="17"/>
+                                <fontDescription key="fontDescription" type="system" size="system"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFW-NB-ba9">
                                 <rect key="frame" x="8" y="45" width="584" height="547"/>
                                 <subviews>
@@ -38,6 +44,18 @@
                                             <rect key="frame" x="161" y="8" width="144" height="27"/>
                                         </variation>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkn-XF-H7A">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" title="Poll Request">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="8" y="43" width="105" height="30"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="pollDidPressed:" destination="hzS-jB-y9W" eventType="touchUpInside" id="J8e-6J-v1M"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
@@ -46,31 +64,37 @@
                                     </constraint>
                                     <constraint firstItem="JjX-ap-VIc" firstAttribute="top" secondItem="wFW-NB-ba9" secondAttribute="top" constant="8" id="2x1-0W-bqa"/>
                                     <constraint firstItem="JjX-ap-VIc" firstAttribute="leading" secondItem="wFW-NB-ba9" secondAttribute="leading" constant="8" id="8Kh-i7-Uyp"/>
+                                    <constraint firstItem="bkn-XF-H7A" firstAttribute="leading" secondItem="wFW-NB-ba9" secondAttribute="leading" constant="8" id="eeQ-Xi-0v0"/>
+                                    <constraint firstItem="bkn-XF-H7A" firstAttribute="top" secondItem="JjX-ap-VIc" secondAttribute="bottom" constant="8" id="jXq-Nt-HPh"/>
                                     <constraint firstItem="bhs-Es-q4G" firstAttribute="top" secondItem="wFW-NB-ba9" secondAttribute="top" constant="8" id="nGJ-80-ndd"/>
                                 </constraints>
                                 <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="bkn-XF-H7A"/>
+                                    </mask>
                                     <mask key="constraints">
                                         <exclude reference="2x1-0W-bqa"/>
                                         <exclude reference="8Kh-i7-Uyp"/>
+                                        <exclude reference="eeQ-Xi-0v0"/>
+                                        <exclude reference="jXq-Nt-HPh"/>
                                         <exclude reference="23P-PX-W6G"/>
                                         <exclude reference="nGJ-80-ndd"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="bkn-XF-H7A"/>
+                                    </mask>
                                     <mask key="constraints">
                                         <include reference="2x1-0W-bqa"/>
                                         <include reference="8Kh-i7-Uyp"/>
+                                        <include reference="eeQ-Xi-0v0"/>
+                                        <include reference="jXq-Nt-HPh"/>
                                         <include reference="23P-PX-W6G"/>
                                         <include reference="nGJ-80-ndd"/>
                                     </mask>
                                 </variation>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="i7n-lc-4In">
-                                <rect key="frame" x="8" y="20" width="584" height="17"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97826086960000003" green="0.91848131079999995" blue="0.73914263440000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -83,13 +107,10 @@
                             <constraint firstItem="i7n-lc-4In" firstAttribute="trailing" secondItem="wFW-NB-ba9" secondAttribute="trailing" id="zIS-yv-SWb"/>
                         </constraints>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Poll" width="42" style="plain" id="ve1-fs-kMA"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="CurrentTime" destination="bhs-Es-q4G" id="eZQ-18-OlR"/>
-                        <outlet property="PollAction" destination="ve1-fs-kMA" id="bHa-ZP-09e"/>
                         <outlet property="dataLabel" destination="i7n-lc-4In" id="8Kj-KN-eO6"/>
                     </connections>
                 </viewController>
