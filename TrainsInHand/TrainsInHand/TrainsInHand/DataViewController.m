@@ -71,8 +71,13 @@
     //process the response here
     NSString *response = [[NSString alloc] initWithData:theData encoding:NSStringEncodingConversionAllowLossy];
     if (response != nil) {
-        NSLog(response);
+        NSLog(@"%@", response);
     }
+}
+
+
+- (IBAction) startTimeDidPress: (id) sender {
+    
 }
 
 @end
