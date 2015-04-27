@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PxF-Ax-wPy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -76,11 +77,11 @@
                                             <action selector="timerStartDidPress:" destination="hzS-jB-y9W" eventType="touchUpInside" id="jCS-nS-Tyf"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2:00" borderStyle="roundedRect" placeholder="2:00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZDy-dQ-0h0">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2:00" borderStyle="roundedRect" placeholder="02:00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZDy-dQ-0h0">
                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhs-Es-q4G">
                                         <rect key="frame" x="255" y="8" width="74" height="21"/>
@@ -120,14 +121,7 @@
                                         <exclude reference="ZDy-dQ-0h0"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="kAj-6j-1dM"/>
-                                        <exclude reference="008-NY-4j2"/>
-                                        <exclude reference="Cd7-Ik-ijO"/>
-                                        <exclude reference="odJ-ef-G62"/>
                                         <exclude reference="f2K-ns-ie6"/>
-                                        <exclude reference="H9v-Dc-AzQ"/>
-                                        <exclude reference="d2T-E3-rQo"/>
-                                        <exclude reference="qPp-zG-96r"/>
                                         <exclude reference="1f4-0H-Ina"/>
                                         <exclude reference="Nsc-MI-mOv"/>
                                         <exclude reference="eVG-qw-tLq"/>
@@ -135,8 +129,15 @@
                                         <exclude reference="pkQ-Gy-fPZ"/>
                                         <exclude reference="Dte-IE-kew"/>
                                         <exclude reference="cnr-0J-E7T"/>
+                                        <exclude reference="008-NY-4j2"/>
+                                        <exclude reference="Cd7-Ik-ijO"/>
+                                        <exclude reference="odJ-ef-G62"/>
                                         <exclude reference="7oG-9S-r34"/>
                                         <exclude reference="AYu-TK-jCZ"/>
+                                        <exclude reference="kAj-6j-1dM"/>
+                                        <exclude reference="H9v-Dc-AzQ"/>
+                                        <exclude reference="d2T-E3-rQo"/>
+                                        <exclude reference="qPp-zG-96r"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -148,14 +149,7 @@
                                         <include reference="ZDy-dQ-0h0"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="kAj-6j-1dM"/>
-                                        <include reference="008-NY-4j2"/>
-                                        <include reference="Cd7-Ik-ijO"/>
-                                        <include reference="odJ-ef-G62"/>
                                         <include reference="f2K-ns-ie6"/>
-                                        <include reference="H9v-Dc-AzQ"/>
-                                        <include reference="d2T-E3-rQo"/>
-                                        <include reference="qPp-zG-96r"/>
                                         <include reference="1f4-0H-Ina"/>
                                         <include reference="Nsc-MI-mOv"/>
                                         <include reference="eVG-qw-tLq"/>
@@ -163,8 +157,15 @@
                                         <include reference="pkQ-Gy-fPZ"/>
                                         <include reference="Dte-IE-kew"/>
                                         <include reference="cnr-0J-E7T"/>
+                                        <include reference="008-NY-4j2"/>
+                                        <include reference="Cd7-Ik-ijO"/>
+                                        <include reference="odJ-ef-G62"/>
                                         <include reference="7oG-9S-r34"/>
                                         <include reference="AYu-TK-jCZ"/>
+                                        <include reference="kAj-6j-1dM"/>
+                                        <include reference="H9v-Dc-AzQ"/>
+                                        <include reference="d2T-E3-rQo"/>
+                                        <include reference="qPp-zG-96r"/>
                                     </mask>
                                 </variation>
                             </view>

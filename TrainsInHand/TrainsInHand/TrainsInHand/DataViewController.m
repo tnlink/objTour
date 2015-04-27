@@ -9,10 +9,20 @@
 #import "DataViewController.h"
 
 @interface DataViewController ()
+//- (IBAction)timerTextUpdated:(id)sender;
+
+@property (strong, nonatomic) NSTimer *stopWatchTimer;
+@property (strong, nonatomic) NSDate *startDate;
+
+
 
 @end
 
 @implementation DataViewController
+
+@synthesize SetTimeTextField;
+
+@synthesize RemainTimeLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -75,9 +85,47 @@
     }
 }
 
+- (void) updateTimer:(NSTimer *)timer {
+    // Create date from the elapsed time
+    NSDate *currentDate = [NSDate date];
+    NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate:self.startDate];
+    NSDate *timerDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+    
+    // Create a date formatter
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm:ss"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0.0]];
+    
+    // Format the elapsed time and set it to the label
+    NSString *timeString = [dateFormatter stringFromDate:timerDate];
+    self.RemainTimeLabel.text = timeString;
+}
 
 - (IBAction) startTimeDidPress: (id) sender {
+    NSString *text = self.SetTimeTextField.text;
+    NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
+    [dateformat setDateFormat:@"mm:ss"];
+    // NSDate *duration = [dateformat dateFromString:text];
+    RemainTimeLabel.text = text;
     
+    self.startDate = [NSDate date];
+    
+    // Create the stop watch timer that fires every 100 ms
+    self.stopWatchTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
+                                                           target:self
+                                                         selector:@selector(updateTimer:)
+                                                         userInfo:nil
+                                                          repeats:YES];
 }
+
+/*
+- (IBAction) timerTextUpdated: (id) sender {
+    NSString *text = self.SetTimeTextField.text;
+    NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
+    [dateformat setDateFormat:@"mm:ss"];
+    // NSDate *duration = [dateformat dateFromString:text];
+    RemainTimeLabel.text = text;
+}
+ */
 
 @end

@@ -20,6 +20,7 @@
 
 // actions
 - (IBAction)startTimeDidPress:(id)sender;
+- (void) updateTimer:(NSTimer *)timer;
 
 @end
 
