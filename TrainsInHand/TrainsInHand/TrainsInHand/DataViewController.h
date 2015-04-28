@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DataViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *PollAction;
-@property (weak, nonatomic) IBOutlet UIButton *TimerStartButton;
-@property (weak, nonatomic) IBOutlet UITextField *SetTimeTextField;
-@property (weak, nonatomic) IBOutlet UILabel *RemainTimeLabel;
+@interface DataViewController : UIViewController <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *pollAction;
+@property (weak, nonatomic) IBOutlet UIButton *timerStartButton;
+@property (weak, nonatomic) IBOutlet UITextField *expectedTimeTextField;
+@property (weak, nonatomic) IBOutlet UILabel *remainTimeLabel;
 
 @property (strong, nonatomic) IBOutlet UILabel *dataLabel;
 @property (strong, nonatomic) id dataObject;

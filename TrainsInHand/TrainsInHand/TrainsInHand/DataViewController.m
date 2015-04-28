@@ -7,26 +7,23 @@
 //
 
 #import "DataViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface DataViewController ()
-//- (IBAction)timerTextUpdated:(id)sender;
 
 @property (strong, nonatomic) NSTimer *stopWatchTimer;
-@property (strong, nonatomic) NSDate *startDate;
-
-
-
+@property (nonatomic) NSTimeInterval offset;
+@property (nonatomic) SystemSoundID soundID;
 @end
 
 @implementation DataViewController
 
-@synthesize SetTimeTextField;
-
-@synthesize RemainTimeLabel;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.CurrentTime.text = [DataViewController displayTime];
+    self.expectedTimeTextField.delegate = self;
+    
+    AudioServicesCreateSystemSoundID((__bridge_retained CFURLRef)[NSURL URLWithString:@"/System/Library/Audio/UISounds/alarm.caf"], &(_soundID));
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,7 +50,8 @@
     [self startPoll];
 }
 
-- (void) longPoll {
+- (void)longPoll
+{
     //compose the request
     NSError* error = nil;
     NSURLResponse* response = nil;
@@ -72,12 +70,14 @@
     [self performSelectorInBackground:@selector(longPoll) withObject: nil];
 }
 
-- (void) startPoll {
+- (void)startPoll
+{
     //not covered in this example:  stopping the poll or ensuring that only 1 poll is active at any given time
     [self performSelectorInBackground:@selector(longPoll) withObject: nil];
 }
 
-- (void) dataReceived: (NSData*) theData {
+- (void)dataReceived:(NSData*)theData
+{
     //process the response here
     NSString *response = [[NSString alloc] initWithData:theData encoding:NSStringEncodingConversionAllowLossy];
     if (response != nil) {
@@ -85,47 +85,73 @@
     }
 }
 
-- (void) updateTimer:(NSTimer *)timer {
-    // Create date from the elapsed time
-    NSDate *currentDate = [NSDate date];
-    NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate:self.startDate];
-    NSDate *timerDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+- (void)updateTimer:(NSTimer *)timer
+{
+    self.offset -= 1;
     
     // Create a date formatter
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"HH:mm:ss"];
+    [dateFormatter setDateFormat:@"mm:ss"];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0.0]];
     
+    NSDate *newTime = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:(self.offset)];
+    
     // Format the elapsed time and set it to the label
-    NSString *timeString = [dateFormatter stringFromDate:timerDate];
-    self.RemainTimeLabel.text = timeString;
+    NSString *timeString = [dateFormatter stringFromDate:newTime];
+    self.remainTimeLabel.text = timeString;
+    
+    [self.view endEditing:YES];
+    
+    if (self.offset <= 0)
+    {
+        self.remainTimeLabel.text = @"Time is up";
+        self.timerStartButton.enabled = YES;
+        [self.stopWatchTimer invalidate];
+        AudioServicesPlaySystemSound(_soundID);
+    }
 }
 
-- (IBAction) startTimeDidPress: (id) sender {
-    NSString *text = self.SetTimeTextField.text;
-    NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
-    [dateformat setDateFormat:@"mm:ss"];
-    // NSDate *duration = [dateformat dateFromString:text];
-    RemainTimeLabel.text = text;
+- (IBAction)startTimeDidPress:(id)sender
+{
+    NSString *text = self.expectedTimeTextField.text;
     
-    self.startDate = [NSDate date];
+    NSArray *comps = [text componentsSeparatedByString:@":"];
+    if ([comps count] == 2) {
+        int minutes = [comps[0] intValue];
+        int seconds = [comps[1] intValue];
+        self.offset = minutes * 60 + seconds;
+    }
     
-    // Create the stop watch timer that fires every 100 ms
-    self.stopWatchTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
+    self.remainTimeLabel.text = text;
+
+    // Create the stop watch timer that fires every 1 second
+    if ([self.stopWatchTimer isValid]) {
+        [self.stopWatchTimer invalidate];
+    }
+    
+    self.stopWatchTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                            target:self
                                                          selector:@selector(updateTimer:)
                                                          userInfo:nil
                                                           repeats:YES];
+    self.timerStartButton.enabled = NO;
 }
 
-/*
-- (IBAction) timerTextUpdated: (id) sender {
-    NSString *text = self.SetTimeTextField.text;
-    NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
-    [dateformat setDateFormat:@"mm:ss"];
-    // NSDate *duration = [dateformat dateFromString:text];
-    RemainTimeLabel.text = text;
+
+#pragma mark - TextField Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self startTimeDidPress:self];
+    
+    return YES;
 }
- */
+
+#pragma viewwillDisappear
+- (void)viewWillDisappear:(BOOL)animated
+{
+    AudioServicesDisposeSystemSoundID(_soundID);
+}
 
 @end
