@@ -17,10 +17,12 @@
 @property (strong, nonatomic) IBOutlet UILabel *dataLabel;
 @property (strong, nonatomic) id dataObject;
 @property (weak, nonatomic) IBOutlet UILabel *CurrentTime;
+@property (weak, nonatomic) IBOutlet UISwitch *beepInHalfTime;
 
 // actions
 - (IBAction)startTimeDidPress:(id)sender;
 - (void) updateTimer:(NSTimer *)timer;
+- (IBAction)resetTimer:(id)sender;
 
 @end
 

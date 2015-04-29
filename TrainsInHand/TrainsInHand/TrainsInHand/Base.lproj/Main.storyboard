@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hzS-jB-y9W">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Data View Controller-->
@@ -45,7 +46,7 @@
                                         <color key="textColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6E-8W-SOK">
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6E-8W-SOK">
                                         <rect key="frame" x="226" y="76" width="46" height="30"/>
                                         <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -75,10 +76,38 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v2f-FD-iJB">
+                                        <rect key="frame" x="128" y="396" width="48" height="30"/>
+                                        <state key="normal" title="RESET">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resetTimer:" destination="hzS-jB-y9W" eventType="touchUpInside" id="ArW-p6-sLF"/>
+                                        </connections>
+                                    </button>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vLc-jm-b4u">
+                                        <rect key="frame" x="223" y="129" width="51" height="31"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beep in half time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y16-cR-AYm">
+                                        <rect key="frame" x="19" y="132" width="138" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="v2f-FD-iJB" secondAttribute="centerY" constant="-153.5" id="4Nn-fh-szm"/>
                                     <constraint firstAttribute="width" constant="304" id="5kg-yA-QMp"/>
+                                    <constraint firstAttribute="trailing" secondItem="vLc-jm-b4u" secondAttribute="trailing" constant="32" id="7Tx-HP-rwb"/>
+                                    <constraint firstAttribute="centerX" secondItem="v2f-FD-iJB" secondAttribute="centerX" id="81D-3a-Q8k"/>
+                                    <constraint firstAttribute="trailing" secondItem="t6E-8W-SOK" secondAttribute="trailing" constant="32" id="8FN-sf-mwV"/>
+                                    <constraint firstItem="Y16-cR-AYm" firstAttribute="leading" secondItem="wFW-NB-ba9" secondAttribute="leading" constant="19" id="MRw-Mu-zoe"/>
+                                    <constraint firstItem="t6E-8W-SOK" firstAttribute="top" secondItem="wFW-NB-ba9" secondAttribute="top" constant="76" id="U8F-yb-5Ym"/>
+                                    <constraint firstAttribute="width" secondItem="vLc-jm-b4u" secondAttribute="height" multiplier="304:31" id="Vc6-Yx-74f"/>
+                                    <constraint firstItem="Y16-cR-AYm" firstAttribute="width" secondItem="wFW-NB-ba9" secondAttribute="height" multiplier="42:515" constant="96" id="agy-CT-4J3"/>
+                                    <constraint firstItem="vLc-jm-b4u" firstAttribute="top" secondItem="wFW-NB-ba9" secondAttribute="top" constant="129" id="hCo-uK-tas"/>
+                                    <constraint firstItem="Y16-cR-AYm" firstAttribute="top" secondItem="wFW-NB-ba9" secondAttribute="top" constant="132" id="rTf-cU-5uS"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -92,6 +121,7 @@
                     <toolbarItems/>
                     <connections>
                         <outlet property="CurrentTime" destination="bhs-Es-q4G" id="eZQ-18-OlR"/>
+                        <outlet property="beepInHalfTime" destination="vLc-jm-b4u" id="I9F-ug-kcP"/>
                         <outlet property="dataLabel" destination="i7n-lc-4In" id="8Kj-KN-eO6"/>
                         <outlet property="expectedTimeTextField" destination="ZDy-dQ-0h0" id="vZT-E2-uO4"/>
                         <outlet property="remainTimeLabel" destination="ebt-d3-YaB" id="Rwv-HC-e7R"/>

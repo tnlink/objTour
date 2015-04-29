@@ -13,7 +13,9 @@
 
 @property (strong, nonatomic) NSTimer *stopWatchTimer;
 @property (nonatomic) NSTimeInterval offset;
-@property (nonatomic) SystemSoundID soundID;
+@property (nonatomic) NSTimeInterval halfOffset;
+@property (nonatomic) SystemSoundID timeIsUpSoundID;
+@property (nonatomic) SystemSoundID halfTimeSoundID;
 @end
 
 @implementation DataViewController
@@ -23,7 +25,9 @@
     self.CurrentTime.text = [DataViewController displayTime];
     self.expectedTimeTextField.delegate = self;
     
-    AudioServicesCreateSystemSoundID((__bridge_retained CFURLRef)[NSURL URLWithString:@"/System/Library/Audio/UISounds/alarm.caf"], &(_soundID));
+    AudioServicesCreateSystemSoundID((__bridge_retained CFURLRef)[NSURL URLWithString:@"/System/Library/Audio/UISounds/alarm.caf"], &(_timeIsUpSoundID));
+    AudioServicesCreateSystemSoundID((__bridge_retained CFURLRef)[NSURL URLWithString:@"/System/Library/Audio/UISounds/new-mail.caf"], &(_halfTimeSoundID));
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,12 +106,18 @@
     
     [self.view endEditing:YES];
     
+    if (self.offset <= self.halfOffset && self.beepInHalfTime.isOn == YES)
+    {
+        AudioServicesPlaySystemSound(_halfTimeSoundID);
+        self.beepInHalfTime.on = NO;
+    }
+    
     if (self.offset <= 0)
     {
         self.remainTimeLabel.text = @"Time is up";
         self.timerStartButton.enabled = YES;
         [self.stopWatchTimer invalidate];
-        AudioServicesPlaySystemSound(_soundID);
+        AudioServicesPlaySystemSound(_timeIsUpSoundID);
     }
 }
 
@@ -120,6 +130,7 @@
         int minutes = [comps[0] intValue];
         int seconds = [comps[1] intValue];
         self.offset = minutes * 60 + seconds;
+        self.halfOffset = self.offset/2;
     }
     
     self.remainTimeLabel.text = text;
@@ -137,6 +148,15 @@
     self.timerStartButton.enabled = NO;
 }
 
+- (IBAction)resetTimer:(id)sender
+{
+    [self.stopWatchTimer invalidate];
+    NSString *durationText = self.expectedTimeTextField.text;
+    
+    self.remainTimeLabel.text = durationText;
+    self.timerStartButton.enabled = YES;
+}
+
 
 #pragma mark - TextField Delegate
 
@@ -151,7 +171,8 @@
 #pragma viewwillDisappear
 - (void)viewWillDisappear:(BOOL)animated
 {
-    AudioServicesDisposeSystemSoundID(_soundID);
+    AudioServicesDisposeSystemSoundID(_timeIsUpSoundID);
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
 }
 
 @end
